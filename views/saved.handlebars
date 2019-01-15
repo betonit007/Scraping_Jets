@@ -1,0 +1,100 @@
+
+ 
+<div class="wrap">
+
+    <div id="header">
+    <h1>Fuel 4 Thought</h1>
+    <a href="/viewSaved">View Saved Articles</a>
+    </div>
+    <div id="mid">
+
+      <div class="container1">
+
+        <div class="card">
+          <div class="card-header">
+            Add Receipt
+          </div>
+
+        
+        </div> 
+      </div>
+        
+
+        <div class="container2">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                Confirm Info
+              </div>
+
+          
+
+        </div>
+      </div>
+    </div>
+
+            
+            
+        </div>
+
+          
+    
+
+        
+        
+    </div>
+
+    <div id="articleContainer">
+
+      <div class="container3">
+
+          <div class="card">
+              <div class="card-header">
+                Recent Activity
+              </div>
+    
+            {{#each articles}}  
+              {{#if Saved}}
+              <div class="row articleContainer">
+                <div class="col-md-12 reading-container">
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="row">
+                       <div class="col-3 reading readingPlace articlImage"><img src="{{this.pic}}"><p>{{this.date}}</p></div>
+                       <div class="col-6 reading readingGallons"><a href="{{this.link}}"><h3>{{this.title}}</h3></a><p>{{this.snip}}</p>
+                       <button data-saveId="{{this.id}}" class="save btn btn-xs btn-success float-left">SAVED</button>
+                       <button data-delId="{{this.id}}" class="delete btn btn-xs btn-danger float-right">DELETE</button>
+                       </div>
+                      <div class="col-3">
+                        <div class="container">
+                          <form>
+                            <div class="form-group">
+                              <textarea class="form-control" rows="5" id="comment"></textarea>
+                            </div>
+                          </form>
+                        </div>
+                        <button data-edit="{{this.id}}" class="edit btn btn-xs btn-info float-right">NOTES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+             {{/if}}
+            {{/each}}
+          </div>
+          </div>
+    </div>
+
+
+
+    <div id="footer">
+      <a href='/api/lowest'>Lowest Price</a>
+       <a href='/'>Recent Activity</a>
+       <a href='/api/store'>By Store</a>
+       <a href='/database'>Database</a>  
+    </div>
+</div>
+

@@ -1,0 +1,48 @@
+@media (min-width:768px) {
+
+  #mid {
+    display: flex;
+    min-height: 60px;
+  }
+
+  #footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 100px;
+    }
+
+  .container1 {
+
+    flex:1;
+    text-align: center;
+    background-color: #b4ecb4;
+    background-image: url("/assets/img/fuel+.png");
+    background-repeat: no-repeat;
+    background-size:100% auto;
+    background-position: 15px 170px;
+    width: 50px;
+    margin: 5px;
+    overflow: hidden;
+    
+  }
+
+  .container2 {
+    flex:1;
+    text-align: center;
+    background-color: #b4ecb4;
+    background-image: url("/assets/img/fuel+.png");
+    background-repeat: no-repeat;
+    background-size:100% auto;
+    background-position: 15px 170px;
+    margin: 5px;
+    
+   
+  }
+
+  .container3 {
+    text-align: center;
+    flex:1;
+    margin: 5px;
+  }
+
+}

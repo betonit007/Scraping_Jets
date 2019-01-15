@@ -1,0 +1,125 @@
+
+ 
+<div class="wrap">
+
+    <div id="header">
+    <h1>Fuel 4 Thought</h1>
+    <a href="/viewSaved">View Saved Articles</a>
+    <a href="/populatedArticles">Populate Articles</a>
+    </div>
+    <div id="mid">
+
+      <div class="container1">
+
+        <div class="card">
+          <div class="card-header">
+            Add Receipt
+          </div>
+
+        
+        </div> 
+      </div>
+        
+
+        <div class="container2">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                Confirm Info
+              </div>
+
+          <div class="card-body">
+            <form action="" method="POST" role="form">
+              <div class="form-group">
+                <label for="">Store</label>
+                <input type="text" class="form-control" id="place" placeholder="">
+              </div>
+              <div class="form-group">
+                <label for="">Address</label>
+                <input type="text" class="form-control" id="address" placeholder="">
+              </div>
+              <div class="form-group">
+                <label for="">Gallons</label>
+                <input type="number" class="form-control" id="gallons" placeholder="">
+              </div>
+              <div class="form-group">
+                <label for="">Total</label>
+                <input type="number" class="form-control" id="total" placeholder="">
+              </div>
+              <div class="form-group">
+                <label for="">Per Gallon</label>
+                <input type="number" class="form-control" id="perGallon" placeholder="">
+              </div>
+            </form>
+            <br>
+            <div class=>
+            <button type="submit" class="btn btn-warning btn-md" id="edit-btn">
+                <span class="fa fa-book"></span>Edit Reading</button>
+              <button type="submit" class="btn btn-primary btn-md" id="add-btn">
+                <span class="fa fa-book"></span>Add Reading</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>       
+  </div>
+    </div>
+
+    <div id="articleContainer">
+
+      <div class="container3">
+
+          <div class="card">
+              <div class="card-header">
+                Recent Activity
+              </div>
+    
+            {{#each articles}}  
+              <div class="row articleContainer">
+                <div class="col-md-12 reading-container">
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="row">
+                       <div class="col-3 reading readingPlace articlImage"><img src="{{this.pic}}"><p>{{this.date}}</p></div>
+                       <div class="col-6 reading readingGallons"><a href="{{this.link}}"><h3>{{this.title}}</h3></a><p>{{this.snip}}</p>
+                       {{#if Saved}}
+                       <button data-saveId="{{this.id}}" class="save btn btn-xs btn-success float-left">SAVED</button>
+                       {{else}}
+                       <button data-saveId="{{this.id}}" class="save btn btn-xs btn-primary float-left">SAVE</button>
+                       {{/if}}
+                       <button data-delId="{{this.id}}" class="delete btn btn-xs btn-danger float-right">DELETE</button>
+                       </div>
+                      <div class="col-3">
+                        <div class="container">
+                          <form>
+                            <div class="form-group">
+                              <textarea class="form-control" rows="5" data-field="{{this.id}}"></textarea>
+                            </div>
+                          </form>
+                        </div>
+                        <button data-edit="{{this.id}}" class="edit btn btn-xs btn-info float-right">NOTES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            
+            {{/each}}
+          </div>
+          </div>
+    </div>
+
+
+
+    <div id="footer">
+      <a href='/api/lowest'>Lowest Price</a>
+       <a href='/'>Recent Activity</a>
+       <a href='/api/store'>By Store</a>
+       <a href='/database'>Database</a>  
+    </div>
+</div>
+
