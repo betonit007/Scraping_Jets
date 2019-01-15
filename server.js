@@ -122,6 +122,18 @@ app.get("/populatedArticles", function(req, res) {
     });
 });
 
+app.get("/getNotes/:id", function(req, res) {
+    console.log(req.params.id);
+    db.Article.findOne({_id:req.params.id})
+    .populate("note")
+    .then(function(dbArticle) {
+        res.json(dbArticle);
+    })
+    .catch(function(err) {
+        res.json(err);
+    });
+});
+
 app.delete("/deleteArticle/:id", function(req, res) {
     // Grab every document in the Articles collection
     db.Article.findOneAndDelete({_id:req.params.id})

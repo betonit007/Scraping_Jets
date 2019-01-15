@@ -36,6 +36,23 @@ $(function() {
           });
     });
 
+    $(".retrieve").on("click", function(event) {
+        event.preventDefault();
+        var id = $(this).attr("data-getNote");
+        console.log(id);
+        $.ajax({
+            method: "get",
+            url: "/getNotes/" + id
+        })
+          .then(function(result) {
+              console.log(result);
+              for (i in result.note) {
+                $("*[data-field="+id+"]").append(result.note[i].body+"\n");
+              }
+              
+          });
+    });
+
 
     $("#add-btn").on("click", function(event) {
         event.preventDefault();
