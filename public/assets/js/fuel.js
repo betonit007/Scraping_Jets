@@ -19,7 +19,9 @@ $(function() {
         event.preventDefault();
         var id = $(this).attr("data-edit");
         var notes = $("*[data-field="+id+"]").val().trim();
-        console.log(notes);
+        $("*[data-field="+id+"]").val("")
+        
+
         var noteToSend = {
             id: id,
             body: notes
@@ -33,6 +35,7 @@ $(function() {
         })
           .then(function(result) {
               console.log(result);
+              $("*[data-notes="+id+"]").click();
           });
     });
 
@@ -81,6 +84,63 @@ $(function() {
         
             });
     });
+
+    $(".getNotes").on("click", function(event) {
+        event.preventDefault();
+        var id = $(this).attr("data-notes");
+        console.log(id);
+        $.ajax({
+            method: "get",
+            url: "/getNotes/" + id
+        })
+          .then(function(result) {
+              console.log(result._id);
+              modal.style.display = "block";
+            
+            if (result.note.length > 0) {
+              for (i in result.note) {
+                
+                $("#noteField").append("<div>" + result.note[i].body + "<span class='closeNote' data-x=" + result.note[i]._id + " data-parent=" + result._id + "> X</span></div>");
+              }
+            }
+            else {
+                $("#noteField").append("No Notes Submitted!");
+            }
+              
+          });
+    });
+
+    $( '#myModal' ).on( 'click', '.closeNote', function (event) {
+        event.preventDefault();
+        var id = $(this).attr("data-x");
+        $(this).parent().remove();
+        
+        $.ajax({
+            method: "DELETE",
+            url: "/deleteNote/" + id
+          })
+            .then(function(result) {
+             console.log(result); 
+
+            });
+    });
+
+    //////////////////hide modal//////////////////////////////
+
+var modal = document.getElementById('myModal');
+var span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+    $("#noteField").empty();
+}
+
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+        $("#noteField").empty();
+    }
+}
 
  
 });

@@ -63,19 +63,23 @@
                     <div class="card-header">
                       <div class="row">
                        <div class="col-3 reading readingPlace articlImage"><img src="{{this.pic}}"><p>{{this.date}}</p></div>
-                       <div class="col-6 reading readingGallons"><a href="{{this.link}}"><h3>{{this.title}}</h3></a><p>{{this.snip}}</p>
+                       <div class="col-6 reading readingJets"><a href="{{this.link}}"><h3>{{this.title}}</h3></a><p>{{this.snip}}</p>
                        <button data-saveId="{{this.id}}" class="save btn btn-xs btn-success float-left">SAVED</button>
+                       <button data-notes="{{this.id}}" class="getNotes btn btn-xs btn-info">NOTES</button>
                        <button data-delId="{{this.id}}" class="delete btn btn-xs btn-danger float-right">DELETE</button>
                        </div>
-                      <div class="col-3">
+                       <div class="col-3">
                         <div class="container">
+                        <h3>Notes</h3>
                           <form>
                             <div class="form-group">
-                              <textarea class="form-control" rows="5" id="comment"></textarea>
+                              <textarea class="form-control" rows="5" data-field="{{this.id}}"></textarea>
                             </div>
                           </form>
                         </div>
-                        <button data-edit="{{this.id}}" class="edit btn btn-xs btn-info float-right">NOTES</button>
+                        <button data-edit="{{this.id}}" class="edit btn btn-xs btn-info">SUBMIT</button>
+                        
+          
                       </div>
                     </div>
                   </div>
@@ -87,6 +91,19 @@
           </div>
           </div>
     </div>
+
+    <!-- The Modal -->
+<div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">      
+              
+              <h4><u>Notes</u></h4>
+
+              <div id="noteField"></div>
+              <div class="close">x</div>
+        
+      </div>
+</div>
 
 
 

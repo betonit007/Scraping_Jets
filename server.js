@@ -153,6 +153,18 @@ app.delete("/deleteArticle/:id", function(req, res) {
     });
   });
 
+  app.delete("/deleteNote/:id", function(req, res) {
+    // Grab every document in the Articles collection
+    db.Note.findOneAndDelete({_id:req.params.id})
+      .then(function(dbArticle) {
+        res.json(dbArticle);
+      })
+      .catch(function(err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
+  });
+
 
 
 // Start server
