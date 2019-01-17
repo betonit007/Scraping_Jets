@@ -36,9 +36,7 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 //A GET route for scraping https://nypost.com/tag/new-york-jets/
 
-app.get("/", function(req, res) {
-    //res.render("index");
-})
+
 
 app.get("/scrape", function(req, res) {
     axios.get("https://nypost.com/tag/new-york-jets/").then(function(response) {
@@ -60,19 +58,34 @@ app.get("/scrape", function(req, res) {
                 console.log(err);
             });
         });
-        res.send("Scrape Complete");
+        res.redirect("/");
     });
 });
 
 //get route to retrieve all articles
-app.get("/articles", function(req, res) {
-    db.Article.find({}).sort({createDate: -1}).then(function(dbArticle) {
+app.get("/", function(req, res) {
+    db.Article.find({}).sort({createDate: 1}).then(function(dbArticle) {
+        console.log(dbArticle.length);
 
-        res.render("index", { articles: dbArticle });
-        })
-        .catch(function(err) {
-            res.json(err);
-        });
+        
+            res.render("index", { articles: dbArticle });
+            })
+            .catch(function(err) {
+                res.json(err);
+        
+            });
+        
+});
+
+app.get("/checkDb", function(req, res) {
+    db.Article.find({}).sort({createDate: -1}).then(function(dbArticle) {
+            res.json(dbArticle);
+            })
+            .catch(function(err) {
+                res.json(err);
+        
+            });
+        
 });
 
 app.get("/viewSaved", function(req, res) {
@@ -162,6 +175,12 @@ app.delete("/deleteArticle/:id", function(req, res) {
       .catch(function(err) {
         // If an error occurred, send it to the client
         res.json(err);
+      });
+  });
+
+  app.delete("/deleteAllArticles", function(req, res) {
+      db.Article.remove({}).then(function(dbArticle) {
+        res.json(dbArticle);
       });
   });
 

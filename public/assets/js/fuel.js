@@ -1,5 +1,16 @@
 $(function() {
 
+    $.ajax({
+        method: "get",
+        url: "/checkDb"
+    }).then(function(result) {
+        if (!result.length) {
+            $(".blink_me").css("font-size", "20px");
+            $(".blink_me").css("color", "red");
+            $(".blink_me").text("Press Scrape Button to Begin!");
+        }
+    })
+
     $(".save").on("click", function(event) {
         event.preventDefault();
         var id = $(this).attr("data-saveId");
@@ -39,6 +50,34 @@ $(function() {
           });
     });
 
+    $("#deleteArticles").on("click", function(event) {
+        $.ajax({
+            method: "delete",
+            url: "/deleteAllArticles"
+        })
+          .then(function(result) {
+              location.reload();
+          })
+    })
+
+    $("#scrapeButton").on("click", function(event) {
+        scraped = true;
+        $(".blink_me").css("font-size", "50px");
+        $(".blink_me").css("color", "#003F2D");
+        $(".scraper").css("visibility", "visible");
+        $(".blink_me").text("Scraping...");
+        $.ajax({
+            method: "get",
+            url: "/scrape"
+        })
+          .then(function(result) {
+            $(".scraper").css("visibility", "hidden");
+            $("#belowHeader.blink_me").empty();
+            
+              location.reload();
+          })
+    })
+
     $(".retrieve").on("click", function(event) {
         event.preventDefault();
         var id = $(this).attr("data-getNote");
@@ -62,7 +101,7 @@ $(function() {
         
         $.ajax({
             method: "get",
-            url: "/articles"
+            url: "/"
           })
             .then(function(result) {
              console.log(result); 
