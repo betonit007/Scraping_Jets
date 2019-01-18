@@ -117,7 +117,7 @@ body {
     margin: 0 auto;
     border: 3px solid black;
     padding: 10px;
-    min-width: 500px;
+    min-width: 700px;
     
     
   }
@@ -126,7 +126,10 @@ body {
     text-align: center;
   }
   
+#toolbar {
 
+  margin: 10px 10px;
+}
 
   img {
     

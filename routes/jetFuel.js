@@ -153,4 +153,18 @@ app.delete("/deleteArticle/:id", function(req, res) {
       });
   });
 
+  app.get("/getAllNotes", function(req, res) {
+      db.Note.find({})
+      .then(function(dbNote) {
+          res.json(dbNote);
+      });
+  });
+
+  app.get("/getAllArticles", function(req, res) {
+    db.Article.find({})
+    .then(function(dbArticle) {
+        res.json(dbArticle);
+    });
+});
+
 };
