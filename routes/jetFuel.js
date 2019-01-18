@@ -2,6 +2,7 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 var db = require("../models");
 
+
 module.exports = function(app) {
 
 //A GET route for scraping https://nypost.com/tag/new-york-jets/
@@ -152,4 +153,4 @@ app.delete("/deleteArticle/:id", function(req, res) {
       });
   });
 
-}
+};
