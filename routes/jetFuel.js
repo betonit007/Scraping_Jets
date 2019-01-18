@@ -1,38 +1,8 @@
-var express = require("express");
-var logger = require("morgan");
-var mongoose = require("mongoose");
-var exphbs = require("express-handlebars");
-
-
 var axios = require("axios");
 var cheerio = require("cheerio");
+var db = require("../models");
 
-// Require all models
-var db = require("./models");
-
-var PORT = process.env.PORT || 8000;
-
-// Initialize Express
-var app = express();
-
-app.engine("handlebars", exphbs({ defaultLayout: "main" }))
-app.set("view engine", "handlebars");
-
-
-// Configure middleware
-
-// Use morgan logger for logging requests
-app.use(logger("dev"));
-// Parse request body as JSON
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-// Make public a static folder
-app.use(express.static("public"));
-
-// Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/ScrapingJets";
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
-
+module.exports = function(app) {
 
 //A GET route for scraping https://nypost.com/tag/new-york-jets/
 
@@ -107,7 +77,7 @@ app.get("/notes", function(req, res) {
 //post route for saving a new note
 
 app.post("/submit", function(req, res) {
-    console.log(req.body.notes);
+    console.log(req.body.body);
     db.Note.create(req.body).then(function(dbNote) {
         console.log(dbNote);
         //after note is created add ref id to the article note is refferring to
@@ -182,10 +152,4 @@ app.delete("/deleteArticle/:id", function(req, res) {
       });
   });
 
-
-
-// Start server
-app.listen(PORT, function() {
-    console.log("App running on port " + PORT);
-  });
-  
+}

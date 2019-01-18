@@ -42,12 +42,12 @@
                        <button data-notes="{{this.id}}" class="getNotes btn btn-xs btn-info">NOTES</button>
                        <button data-delId="{{this.id}}" class="delete btn btn-xs btn-danger float-right">DELETE</button>
                        </div>
-                      <div class="col-3">
-                        <div class="container">
-                        <h3>Notes</h3>
+                      <div class="col-3 notesField">
+                        <div class="container notesField">
+                        
                           <form>
                             <div class="form-group">
-                              <textarea class="form-control" rows="5" data-field="{{this.id}}"></textarea>
+                              <textarea class="form-control" rows="5" placeholder="Take a Note!" data-field="{{this.id}}"></textarea>
                             </div>
                           </form>
                         </div>
@@ -82,10 +82,8 @@
 
 
     <div id="footer">
-      <a href='/api/lowest'>Lowest Price</a>
-       <a href='/'>Recent Activity</a>
-       <a href='/api/store'>By Store</a>
-       <a href='/database'>Database</a>  
+      <a href="/viewSaved">View Saved Articles</a>
+      <a href="/populatedArticles">Populate Articles</a>
     </div>
 </div>
 

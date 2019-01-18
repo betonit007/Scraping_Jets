@@ -1,7 +1,19 @@
+@font-face { font-family: jets; src: url('../fonts/jets.otf'); } 
+
+h1 {
+   font-family: jets, sans-serif; 
+   font-size: 70px;
+}
+
+
 @media only screen and (max-width: 600px) {
   body {
     background-color: lightblue;
   }
+}
+
+body {
+  background-image: url("/assets/img/fpaper.jpg")
 }
 
 #header {
@@ -14,6 +26,11 @@
 .blink_me {
   animation: blinker 1s linear infinite;
   font-size: 50px;
+  text-shadow:
+		-1px -1px 0 white,
+		1px -1px 0 white,
+		-1px 1px 0 white,
+		1px 1px 0 white;
   margin: 20px 0 0 0;
 }
 
@@ -21,6 +38,10 @@
   50% {
     opacity: 0;
   }
+}
+
+.articlImage, .notesField {
+  background-color: #F0F8FF;
 }
 
 
@@ -132,7 +153,7 @@
   margin: 5px;
 }
 
-.articleContainer {
+.articleContainer, .wrap {
 
 background-color: #003F2D;
 }

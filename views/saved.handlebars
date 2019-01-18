@@ -5,8 +5,7 @@
     <div id="header">
     <h1><img src="/assets/img/jetslogo.png">SkyScrapers</h1>
       <div id="toolbar">
-        <a href="/viewSaved">View Saved Articles</a>
-        <a href="/populatedArticles">Populate Articles</a>
+        
       </div>
 
       <div class="row" id="belowHeader">
@@ -20,10 +19,7 @@
 
       <div class="container3">
 
-          <div class="card">
-              <div class="card-header">
-                Recent Activity
-              </div>
+          <div class="card" id="articles-here">
     
             {{#each articles}}  
               {{#if Saved}}
@@ -40,10 +36,9 @@
                        </div>
                        <div class="col-3">
                         <div class="container">
-                        <h3>Notes</h3>
                           <form>
                             <div class="form-group">
-                              <textarea class="form-control" rows="5" data-field="{{this.id}}"></textarea>
+                              <textarea class="form-control" rows="5" placeholder="Take a Note!" data-field="{{this.id}}"></textarea>
                             </div>
                           </form>
                         </div>
@@ -78,10 +73,8 @@
 
 
     <div id="footer">
-      <a href='/api/lowest'>Lowest Price</a>
-       <a href='/'>Recent Activity</a>
-       <a href='/api/store'>By Store</a>
-       <a href='/database'>Database</a>  
+      <a href="/viewSaved">View Saved Articles</a>
+      <a href="/populatedArticles">Populate Articles</a>
     </div>
 </div>
 
