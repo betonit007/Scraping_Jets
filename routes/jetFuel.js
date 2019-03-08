@@ -14,11 +14,11 @@ app.get("/scrape", function(req, res) {
         $("article").each(function(i, element) {
             var result = {};
 
-            result.title = $(this).children("header").children("h3").children("a").text();
-            result.link = $(this).children("div").children("a").attr("href");
-            result.snip = $(this).children("div.entry-content").text();
-            result.pic = $(this).children("div.entry-thumbnail").children("a").children("picture").children("source").attr("data-srcset");
-            result.date = $(this).children("header").children("div.entry-meta").children("p").text();
+        result.title = $(this).children("div.entry-header").children("h3").children("a").text();
+        result.link = $(this).children("div").children("a").attr("href");
+        result.snip = $(this).children("div.entry-content").text();
+        result.pic = $(this).children("div.entry-thumbnail").children("a").children("picture").children("source").attr("data-srcset");
+        result.date = $(this).children("div.entry-header").children("div.entry-meta").children("p").text();
 
             db.Article.create(result).then(function(dbArticle) {
                 console.log(dbArticle);
