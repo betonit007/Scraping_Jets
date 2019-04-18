@@ -11,7 +11,7 @@ app.get("/scrape", function(req, res) {
     axios.get("https://nypost.com/tag/new-york-jets/").then(function(response) {
         var $ = cheerio.load(response.data);
 
-        $("article").each(function(i, element) {
+        $(".article").each(function(i, element) {
             var result = {};
 
         result.title = $(this).children("div.entry-header").children("h3").children("a").text();
